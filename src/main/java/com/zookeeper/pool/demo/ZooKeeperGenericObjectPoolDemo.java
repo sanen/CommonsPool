@@ -71,6 +71,13 @@ public class ZooKeeperGenericObjectPoolDemo {
         ZooKeeperGenericObjectPoolDemo pool = new ZooKeeperGenericObjectPoolDemo("localhost:2181");
         ZooKeeper zooKeeper = pool.createSocket();
         System.out.println(zooKeeper);
+        try {
+            zooKeeper.close();
+            
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

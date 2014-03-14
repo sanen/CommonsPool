@@ -2,6 +2,7 @@ package com.test;
 
 import org.apache.commons.pool.ObjectPool;
 import org.apache.commons.pool.PoolableObjectFactory;
+import org.apache.commons.pool.impl.GenericObjectPool;
 import org.apache.commons.pool.impl.StackObjectPool;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
@@ -19,7 +20,9 @@ public class Test {
     }
     public static void main(String[] args) throws Exception {
         PoolableObjectFactory factory = new MyConnectionPoolableObjectFactory();
-        ObjectPool pool = new StackObjectPool(factory);
+        
+        GenericObjectPool pool = new GenericObjectPool(factory);
+        pool.setMinEvictableIdleTimeMillis(10000);
         try {
             logger.info("================================================");
             for (int i = 0; i < 10; i++) {
